@@ -27,9 +27,8 @@ end
 
 
 def num_points_scored(name)
-  data = game_hash
   
-  data.reduce({}) do |memo, (team,value)|
+  game_hash.reduce({}) do |memo, (team,value)|
     value[:players].reduce({}) do |memo, (player, info)|
       
       if player[:player_name] == name
@@ -41,9 +40,8 @@ end
 
 
 def shoe_size(name)
- data = game_hash
   
-  data.reduce({}) do |memo, (team,value)|
+  game_hash.reduce({}) do |memo, (team,value)|
     value[:players].reduce({}) do |memo, (player, info)|
       
       if player[:player_name] == name
@@ -54,9 +52,9 @@ def shoe_size(name)
 end
 
 def team_colors (name)
-  data = game_hash
   
-  data.reduce({}) do |memo, (team, value)|
+  
+  game_hash.reduce({}) do |memo, (team, value)|
     if value[:team_name] == name
       return value[:colors]
     end
@@ -64,20 +62,18 @@ def team_colors (name)
 end
 
 def team_names
-  data = game_hash
   team_hash = []
   
-  data.reduce({}) do |memo, (team, value)|
+  game_hash.reduce({}) do |memo, (team, value)|
    team_hash.push(value[:team_name])
   end
   team_hash
 end
 
 def player_numbers(team_name)
-  data = game_hash
   jersey_array = []
   
-  data.reduce({}) do |memo, (team,value)|
+  game_hash.reduce({}) do |memo, (team,value)|
     if value[:team_name] == team_name
       value[:players].each do |number|
         jersey_array.push(number[:number])
@@ -89,9 +85,8 @@ end
 
 
 def player_stats(name)
-  data = game_hash
   
-  data.reduce({}) do |memo, (team,value)|
+  game_hash.reduce({}) do |memo, (team,value)|
     value[:players].reduce({}) do |memo, (player, info)|
       
       if player[:player_name] == name
@@ -104,12 +99,11 @@ end
 
 
 def big_shoe_rebounds
-  data = game_hash
   
   biggest_shoe = 0
   rebounds = 0
   
-  data.reduce ({}) do |memo, (team, value)|
+  game_hash.reduce ({}) do |memo, (team, value)|
     value[:players].reduce({}) do |memo, (player, info)|
       
       if player[:shoe] > biggest_shoe
@@ -147,7 +141,7 @@ def winning_team
   data = game_hash
   
   team_1_points = 0
-  team_1_name = n""
+  team_1_name = ""
   team_2_points = 0
   team_2_name = ""
   
